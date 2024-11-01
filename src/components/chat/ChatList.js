@@ -1,45 +1,30 @@
-{/*import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
+//import { Search01Icon } from 'hugeicons-react'; 
 import '../../styles/chat/ChatList.css';
 
-const ChatList = ({ users, quickAccess, selectedUser, onSelectUser }) => {
+const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
   return (
-    
     <div className="chat-list-container">
       <div className="chat-list-header">
-        <h2>Messages</h2>
-        <p>23 members, 10 online</p>
-        <div className=''>
+        <h2>Chat Rooms</h2>
         <div className="search">
           <div className="chat-search-container">
-            <input type="text" placeholder="Search" /> 
+            <input type="text" placeholder="Search" />
           </div>
           <span>Search</span>
-        </div>
         </div>
       </div>
 
       <div className="messages-section">
-        {users.map(user => (
+        {rooms.map(room => (
           <div 
-            key={user.id} 
-            className={`chat-item ${selectedUser?.id === user.id ? 'active' : ''}`}
-            onClick={() => onSelectUser(user)}
+            key={room.id} 
+            className={`chat-item ${selectedRoom?.id === room.id ? 'active' : ''}`}
+            onClick={() => onSelectRoom(room)}
           >
-            <div className="chat-avatar">
-              <img src={user.avatar} alt="" className="avatar-image" />
-              <div className={`status ${user.isOnline ? 'online' : ''}`}></div>
-            </div>
             <div className="chat-info">
               <div className="chat-header">
-                <h4>{user.name}</h4>
-                <span className="time">{user.time}</span>
-              </div>
-              <div className="chat-message">
-                <p>{user.message}</p>
-                {user.pinned && <span className="pin-icon">📌</span>}
-                {user.unread && <div className="unread-badge">{user.unread}</div>}
+                <h4>{room.name}</h4>
               </div>
             </div>
           </div>

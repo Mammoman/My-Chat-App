@@ -1,15 +1,18 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Auth } from './components/auth/Auth';
 import Cookies from 'universal-cookie';
 import Chat from './components/chat/Chat';
+import ChatList from './components/chat/ChatList';
 import { signOut } from 'firebase/auth';
-import { auth } from './config/firebase';
+import { auth, db } from './config/firebase';
+import { collection, onSnapshot } from 'firebase/firestore';
 
 const cookies = new Cookies();
 
 const MainApp = () => {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [room, setRoom] = useState(null);
+  const [rooms, setRooms] = useState([]);
   const roomInputRef = useRef(null);
 
   const signUserOut = async () => {
@@ -18,6 +21,16 @@ const MainApp = () => {
     setIsAuth(false);
     setRoom(null);
   };
+
+  useEffect(() => {
+    const roomsRef = collection(db, "rooms");
+    const unsubscribe = onSnapshot(roomsRef, (snapshot) => {
+      const roomsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setRooms(roomsData);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   if (!isAuth) {
     return (
@@ -29,11 +42,12 @@ const MainApp = () => {
 
   return (
     <>
+      <ChatList rooms={rooms} selectedRoom={room} onSelectRoom={setRoom} />
       {room ? (
         <Chat room={room} />
       ) : (
         <div className='room'>
-          <label> room name</label>
+          <label> Room name</label>
           <input ref={roomInputRef} />
           <button onClick={() => setRoom(roomInputRef.current.value)}>
             Chat

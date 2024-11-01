@@ -4,9 +4,9 @@ import MainApp from './MainApp';
 
 const App = () => {
   return (
-    <div>
+    <div >
       <h1>Chat Application</h1>
-      <MainApp />
+      <MainApp className='mainpage-container'/>
     </div>
   );
 };
