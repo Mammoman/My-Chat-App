@@ -3,6 +3,7 @@ import { Auth } from './components/auth/Auth';
 import Cookies from 'universal-cookie';
 import Chat from './components/chat/Chat';
 import ChatList from './components/chat/ChatList';
+import Sidebar from './components/chat/Sidebar';
 import { signOut } from 'firebase/auth';
 import { auth, db } from './config/firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
@@ -41,23 +42,26 @@ const MainApp = () => {
   }
 
   return (
-    <>
-      <ChatList rooms={rooms} selectedRoom={room} onSelectRoom={setRoom} />
-      {room ? (
-        <Chat room={room} />
-      ) : (
-        <div className='room'>
-          <label> Room name</label>
-          <input ref={roomInputRef} />
-          <button onClick={() => setRoom(roomInputRef.current.value)}>
-            Chat
-          </button>
-        </div>
-      )}
+    <div className="app-container">
+      <Sidebar />
+      <div className="main-content">
+        <ChatList rooms={rooms} selectedRoom={room} onSelectRoom={setRoom} />
+        {room ? (
+          <Chat room={room} />
+        ) : (
+          <div className='room'>
+            <label> Room name</label>
+            <input ref={roomInputRef} />
+            <button onClick={() => setRoom(roomInputRef.current.value)}>
+              Chat
+            </button>
+          </div>
+        )}
+      </div>
       <div className='sign-out'>
         <button onClick={signUserOut}>Sign Out</button>
       </div>
-    </>
+    </div>
   );
 };
 

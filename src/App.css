@@ -38,11 +38,47 @@
 }
 
 
-.mainpage-container {
+.mainpage-containe {
   display: flex;
   flex-direction: row;
   width: 100%;
   overflow: hidden;
   height:  100vh;
   
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 100px; /* Adjust width as needed */
+  background: #0A0A0A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.chat-list-container {
+  width: 30%; /* Adjust width as needed */
+  background-color: #ffffff;
+  border-right: 1px solid #ccc;
+}
+
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-out {
+  margin: 10px;
 }
