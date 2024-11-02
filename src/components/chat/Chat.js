@@ -7,11 +7,10 @@ const Chat = (props) => {
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const messagesRef = collection(db, "messages");
+  const messagesRef = collection(db, `Rooms/${room}/Messages`);
 
   useEffect(() => {
     const queryMessages = query(messagesRef,  
-      where("room", "==", room),
       orderBy("createdAt")
     );
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
