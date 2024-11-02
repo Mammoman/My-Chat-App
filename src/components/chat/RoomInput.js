@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 
-const RoomInput = ({ setRoom }) => {
-  const roomInputRef = useRef(null);
+function RoomInput({ setRoom }) {
+    const roomInputRef = useRef(null);
 
   return (
     <div className='room'>
@@ -13,5 +13,6 @@ const RoomInput = ({ setRoom }) => {
     </div>
   );
 };
+
 
 export default RoomInput; 
