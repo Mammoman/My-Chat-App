@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Auth } from './components/auth/Auth';
 import Cookies from 'universal-cookie';
 import Chat from './components/chat/Chat';
 import ChatList from './components/chat/ChatList';
 import Sidebar from './components/chat/Sidebar';
+import RoomInput from './components/chat/RoomInput';
 import { signOut } from 'firebase/auth';
 import { auth, db } from './config/firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
@@ -14,7 +15,6 @@ const MainApp = () => {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [room, setRoom] = useState(null);
   const [rooms, setRooms] = useState([]);
-  const roomInputRef = useRef(null);
 
   const signUserOut = async () => {
     await signOut(auth);
@@ -34,11 +34,7 @@ const MainApp = () => {
   }, []);
 
   if (!isAuth) {
-    return (
-      <div>
-        <Auth setIsAuth={setIsAuth} />
-      </div>
-    );
+    return <Auth setIsAuth={setIsAuth} />;
   }
 
   return (
@@ -49,17 +45,11 @@ const MainApp = () => {
         {room ? (
           <Chat room={room} />
         ) : (
-          <div className='room'>
-            <label> Room name</label>
-            <input ref={roomInputRef} />
-            <button onClick={() => setRoom(roomInputRef.current.value)}>
-              Chat
-            </button>
-          </div>
+          <RoomInput setRoom={setRoom} />
         )}
       </div>
       <div className='sign-out'>
-        <button onClick={signUserOut}>Sign Out</button>
+        <button onClick={signUserOut} className="sign-out-button">Sign Out</button>
       </div>
     </div>
   );

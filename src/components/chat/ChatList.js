@@ -2,6 +2,8 @@ import React from 'react';
 //import { Search01Icon } from 'hugeicons-react'; 
 import '../../styles/chat/ChatList.css';
 
+
+
 const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
   return (
     <div className="chat-list-container">
@@ -29,6 +31,9 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
             </div>
           </div>
         ))}
+      </div>
+      <div>
+
       </div>
     </div>
   );
