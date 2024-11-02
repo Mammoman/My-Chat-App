@@ -12,6 +12,7 @@ export const Auth = (props) => {
 
     // State for email and password
     const [email, setEmail] = useState("");
+    const [name, setNamme] = useState("");
     const [password, setPassword] = useState("");
     const [isSignUp, setIsSignUp] = useState(false); // State to toggle between sign up and sign in
 
@@ -29,18 +30,33 @@ export const Auth = (props) => {
     const handleEmailPasswordSignIn = async (e) => {
         e.preventDefault();
         try {
-            if (isSignUp) {
-                // Sign up with email and password
-                const result = await createUserWithEmailAndPassword(auth, email, password);
-                cookies.set("auth-token", result.user.refreshToken);
-            } else {
                 // Sign in with email and password
                 const result = await signInWithEmailAndPassword(auth, email, password);
                 cookies.set("auth-token", result.user.refreshToken);
-            }
             setIsAuth(true);
         } catch (err) {
             console.error(err);
+        }
+    };
+
+    const handleEmailPasswordSignUp = async (e) => {
+        e.preventDefault(); // Prevent default form submission
+        try {
+            // Sign up with email and password
+            const result = await createUserWithEmailAndPassword(auth, email, password);
+            cookies.set("auth-token", result.user.refreshToken);
+            setIsAuth(true); // Set authentication state to true
+        } catch (err) {
+            console.error("Sign Up Error:", err);
+            let errorMessage = "Failed to create an account. Please try again.";
+            if (err.code === 'auth/invalid-email') {
+                errorMessage = "The email address is not valid.";
+            } else if (err.code === 'auth/email-already-in-use') {
+                errorMessage = "The email address is already in use.";
+            } else if (err.code === 'auth/weak-password') {
+                errorMessage = "The password is too weak.";
+            }
+            alert(errorMessage);
         }
     };
 
@@ -83,12 +99,12 @@ export const Auth = (props) => {
         <div className="container" id="container">
             <div className={`form-container ${isSignUp ? "sign-up-container" : "sign-in-container"}`}>
                 {isSignUp ? (
-                    <form className="form-container-create" onSubmit={handleEmailPasswordSignIn}>
+                    <form className="form-container-create" onSubmit={handleEmailPasswordSignUp}>
                         <h1>Create Account</h1>
                         <div className="social-container">
                         <span>or use your email for registration</span>
                           <ArrowRightDoubleIcon/>
-                            <GoogleIcon size={44} onClick={handleGoogleSignIn} />
+                            <GoogleIcon size={44} onClick={handleEmailPasswordSignUp} />
                         </div>
                         
                         <input type="text" placeholder="Name" required />
@@ -106,7 +122,7 @@ export const Auth = (props) => {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                        <button type="submit">Sign Up</button>
+                        <button type="submit" onClick={handleEmailPasswordSignUp}>Sign Up</button>
                     </form>
                 ) : (
                     <form className="form-container" onSubmit={handleEmailPasswordSignIn}>

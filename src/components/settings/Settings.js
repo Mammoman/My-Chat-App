@@ -1,4 +1,4 @@
-{/*
+
 import React, { useState } from 'react';
 import Profile from './Profile';
 import Account from './Account';

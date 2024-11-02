@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { addDoc, collection, onSnapshot, serverTimestamp, query, where, orderBy } from 'firebase/firestore';
 import { auth, db } from '../../config/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const Chat = (props) => {
   const { room } = props;  
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [userEmail, setUserEmail] = useState(null);
 
   const messagesRef = collection(db, `Rooms/${room}/Messages`);
 
@@ -24,6 +26,19 @@ const Chat = (props) => {
 
     return () => unsubscribe();
   }, [room]);
+
+  useEffect(() => {
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      console.log("Auth state changed:", user);
+      if (user) {
+        setUserEmail(user.email);
+      } else {
+        setUserEmail(null);
+      }
+    });
+
+    return () => unsubscribeAuth();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,11 +64,16 @@ const Chat = (props) => {
     <div className="mainpage-container">
       <div className='header'>
         <h1>Welcome user: {room}</h1>
+        {userEmail ? (
+          <h2>User Email: {userEmail}</h2>
+        ) : (
+          <h2>User not authenticated</h2>
+        )}
       </div>
       <div> 
         {messages.map((message) => (
           <div key={message.id}>
-            <span>{message.user}</span> {/* Display user's email */}
+            <span>{message.user}</span>
             {message.text}
           </div>
         ))}

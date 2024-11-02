@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message02Icon, Setting06Icon, Logout03Icon, Folder03Icon } from 'hugeicons-react';
+import { Settings02Icon, Folder01Icon, Logout02Icon, Mail01Icon } from 'hugeicons-react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase';
 import '../../styles/chat/Sidebar.css';
@@ -33,18 +33,23 @@ const Sidebar = () => {
 
       <div className="sidebar-menu">
         <button className="menu-item">
-          <Message02Icon />
-          <p>All chats</p>
+          <Mail01Icon />
+          <p>All Rooms</p>
         </button>
         <button className="menu-item">
-          <Folder03Icon />
+          <Folder01Icon />
           <p>Archived</p>
         </button>
       </div>
 
       <div className="sidebar-bottom">
+      <button className="menu-item">
+           <Settings02Icon/>
+           <p>Settings</p>
+      </button>
+        
         <button className="menu-item" onClick={handleSignOut}>
-          <Logout03Icon />
+          <Logout02Icon/>
           <p>Logout</p>
         </button>
       </div>
