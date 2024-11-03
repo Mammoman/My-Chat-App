@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { addDoc, collection, onSnapshot, serverTimestamp, query, where, orderBy } from 'firebase/firestore';
+import { addDoc, collection, onSnapshot, serverTimestamp, query, orderBy } from 'firebase/firestore';
 import { auth, db } from '../../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import '../../styles/chat/MessageArea.css'; // Import the CSS file
 
 const Chat = (props) => {
   const { room } = props;  
@@ -12,9 +13,7 @@ const Chat = (props) => {
   const messagesRef = collection(db, `Rooms/${room}/Messages`);
 
   useEffect(() => {
-    const queryMessages = query(messagesRef,  
-      orderBy("createdAt")
-    );
+    const queryMessages = query(messagesRef, orderBy("createdAt"));
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
       let messages = [];
       snapshot.forEach((doc) => {
@@ -61,30 +60,32 @@ const Chat = (props) => {
   };
 
   return (
-    <div className="mainpage-container">
-      <div className='header'>
-        <h1>Welcome user: {room}</h1>
+    <div className="message-area">
+      <div className='message-header'>
+        <h1>Welcome user : {room}</h1>
         {userEmail ? (
           <h2>User Email: {userEmail}</h2>
         ) : (
           <h2>User not authenticated</h2>
         )}
       </div>
-      <div> 
+      <div className="message-content"> 
         {messages.map((message) => (
-          <div key={message.id}>
-            <span>{message.user}</span>
-            {message.text}
+          <div key={message.id} className={`message ${message.user === userEmail ? 'sent' : 'received'}`}>
+            <div className="message-bubble">
+              <span>{message.user}</span>
+              <p>{message.text}</p>
+            </div>
           </div>
         ))}
       </div>
-      <form onSubmit={handleSubmit} className='new-message-form'>
-        <input className='new-message-input' 
+      <form onSubmit={handleSubmit} className='message-box'>
+        <input className='message-input' 
           placeholder='Type here...'
           onChange={(e) => setNewMessage(e.target.value)}
           value={newMessage}
         />
-        <button type='submit' className='send-button'>Send</button>
+        <button type='submit' className='action-btn plus-btn'>Send</button>
       </form>
     </div>
   );
