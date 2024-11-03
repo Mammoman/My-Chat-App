@@ -4,7 +4,6 @@ import Cookies from 'universal-cookie';
 import Chat from './components/chat/Chat';
 import ChatList from './components/chat/ChatList';
 import Sidebar from './components/chat/Sidebar';
-import RoomInput from './components/chat/RoomInput';
 import { signOut } from 'firebase/auth';
 import { auth, db } from './config/firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
@@ -39,18 +38,14 @@ const MainApp = () => {
 
   return (
     <div className="app-container">
-      <Sidebar />
+      <Sidebar signUserOut={signUserOut} />
       <div className="main-content">
-        <ChatList rooms={rooms} selectedRoom={room} onSelectRoom={setRoom} />
+        <ChatList rooms={rooms} selectedRoom={room} onSelectRoom={setRoom} setRoom={setRoom} />
         {room ? (
           <Chat room={room} />
-        ) : (
-          <RoomInput setRoom={setRoom} />
-        )}
+        ) : null}
       </div>
-      <div className='sign-out'>
-        <button onClick={signUserOut} className="sign-out-button">Sign Out</button>
-      </div>
+     
     </div>
   );
 };

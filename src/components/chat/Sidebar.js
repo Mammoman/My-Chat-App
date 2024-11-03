@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase';
 import '../../styles/chat/Sidebar.css';
 
-const Sidebar = () => {
+const Sidebar = ({ signUserOut }) => {
   const navigate = useNavigate();
   const currentUser = auth.currentUser;
 
   const handleSignOut = async () => {
     try {
-      await auth.signOut();
-      navigate('/');
+      await signUserOut();
+      navigate('/A');
     } catch (error) {
       console.error('Error signing out:', error);
     }
@@ -43,13 +43,13 @@ const Sidebar = () => {
       </div>
 
       <div className="sidebar-bottom">
-      <button className="menu-item">
-           <Settings02Icon/>
-           <p>Settings</p>
-      </button>
+        <button className="menu-item">
+          <Settings02Icon />
+          <p>Settings</p>
+        </button>
         
         <button className="menu-item" onClick={handleSignOut}>
-          <Logout02Icon/>
+          <Logout02Icon />
           <p>Logout</p>
         </button>
       </div>

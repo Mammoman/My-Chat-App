@@ -1,8 +1,6 @@
 import React from 'react';
-//import { Search01Icon } from 'hugeicons-react'; 
 import '../../styles/chat/ChatList.css';
-
-
+import RoomInput from './RoomInput';
 
 const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
   return (
@@ -18,22 +16,28 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
       </div>
 
       <div className="messages-section">
-        {rooms.map(room => (
-          <div 
-            key={room.id} 
-            className={`chat-item ${selectedRoom?.id === room.id ? 'active' : ''}`}
-            onClick={() => onSelectRoom(room)}
-          >
-            <div className="chat-info">
-              <div className="chat-header">
-                <h4>{room.name}</h4>
+        {rooms.length > 0 ? (
+          rooms.map(room => (
+            <div 
+              key={room.id} 
+              className={`chat-item ${selectedRoom?.id === room.id ? 'active' : ''}`}
+              onClick={() => onSelectRoom(room)}
+            >
+              <div className="chat-info">
+                <div className="chat-header">
+                  <h4>{room.name}</h4>
+                </div>
               </div>
             </div>
+          ))
+        ) : (
+          <div className="no-rooms">
+            <p>No chat rooms available. Create a new room!</p>
           </div>
-        ))}
+        )}
       </div>
       <div>
-
+        <RoomInput setRoom={onSelectRoom} />
       </div>
     </div>
   );

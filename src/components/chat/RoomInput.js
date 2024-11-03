@@ -5,7 +5,7 @@ function RoomInput({ setRoom }) {
 
   return (
     <div className='room'>
-      <label> Room name</label>
+      <label> Room name hh</label>
       <input ref={roomInputRef} />
       <button onClick={() => setRoom(roomInputRef.current.value)}>
         Chat

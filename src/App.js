@@ -7,6 +7,7 @@ const App = () => {
     <div >
       <h1>Chat Application</h1>
       <MainApp/>
+      <div></div>
     </div>
   );
 };
