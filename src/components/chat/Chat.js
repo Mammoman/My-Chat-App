@@ -42,15 +42,10 @@ const Chat = (props) => {
     e.preventDefault();
     if (newMessage === "") return;
 
-    if (!auth.currentUser) {
-      console.error("User is not authenticated");
-      return; // Exit if the user is not authenticated
-    }
-
     await addDoc(messagesRef, {
       text: newMessage,
       createdAt: serverTimestamp(),
-      user: auth.currentUser.email,
+      user: auth.currentUser ? auth.currentUser.email : 'Guest', // Set user as 'Guest' if not authenticated
       room,
     });
 
@@ -59,40 +54,33 @@ const Chat = (props) => {
 
   return (
     <div className="message-area">
-      {room ? (
-        <>
-          <div className='message-header'>
-            <h1>Welcome user : {room}</h1>
-            {userEmail ? (
-              <h2>User Email: {userEmail}</h2>
-            ) : (
-              <h2>User not authenticated</h2>
-            )}
+      <div className='message-header'>
+        <h1>Welcome user : {room}</h1>
+        {userEmail ? (
+          <h2>User Email: {userEmail}</h2>
+        ) : (
+          <p>User not authenticated</p>
+        )}
+      </div>
+      
+      <div className="message-content"> 
+        {messages.map((message) => (
+          <div key={message.id} className={`message ${message.user === userEmail ? 'sent' : 'received'}`}>
+            <div className="message-bubble">
+              <span>{message.user}</span>
+              <p>{message.text}</p>
+            </div>
           </div>
-          <div className="message-content"> 
-            {messages.map((message) => (
-              <div key={message.id} className={`message ${message.user === userEmail ? 'sent' : 'received'}`}>
-                <div className="message-bubble">
-                  <span>{message.user}</span>
-                  <p>{message.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <form onSubmit={handleSubmit} className='message-box'>
-            <input className='message-input' 
-              placeholder='Type here...'
-              onChange={(e) => setNewMessage(e.target.value)}
-              value={newMessage}
-            />
-            <button type='submit' className='action-btn plus-btn'>Send</button>
-          </form>
-        </>
-      ) : (
-        <div className="no-chat-selected">
-          <p>Create ChatRoom or Select Created ChatRooms</p>
-        </div>
-      )}
+        ))}
+      </div>
+      <form onSubmit={handleSubmit} className='message-box'>
+        <input className='message-input' 
+          placeholder='Type here...'
+          onChange={(e) => setNewMessage(e.target.value)}
+          value={newMessage}
+        />
+        <button type='submit' className='action-btn plus-btn'>Send</button>
+      </form>
     </div>
   );
 };

@@ -1,21 +1,28 @@
 import React from 'react';
+import { useState } from 'react';
 import { Settings02Icon, Folder01Icon, Logout02Icon, Mail01Icon } from 'hugeicons-react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase';
 import '../../styles/chat/Sidebar.css';
+import Settings from '../settings/Settings';
 
 const Sidebar = ({ signUserOut }) => {
   const navigate = useNavigate();
   const currentUser = auth.currentUser;
+  const [showSettings, setShowSettings] = useState(false);
 
   const handleSignOut = async () => {
     try {
       await signUserOut();
-      navigate('/A');
+      navigate('/');
     } catch (error) {
       console.error('Error signing out:', error);
     }
   };
+
+  const toggleSettings = () => {
+    setShowSettings(!showSettings);
+};
 
   return (
     <div className="sidebar">
@@ -43,7 +50,7 @@ const Sidebar = ({ signUserOut }) => {
       </div>
 
       <div className="sidebar-bottom">
-        <button className="menu-item">
+        <button className="menu-item" onClick={toggleSettings}>
           <Settings02Icon />
           <p>Settings</p>
         </button>
@@ -53,6 +60,12 @@ const Sidebar = ({ signUserOut }) => {
           <p>Logout</p>
         </button>
       </div>
+      {showSettings && (
+                <div className="settings-overlay">
+                    <Settings />
+                    <button className="close-settings" onClick={toggleSettings}>Close</button>
+                </div>
+            )}
     </div>
   );
 };

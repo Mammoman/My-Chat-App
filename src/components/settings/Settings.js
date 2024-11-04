@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Profile from './Profile';
 import Account from './Account';
@@ -7,12 +6,16 @@ import '../../styles/settings/Settings.css'
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('profile');
- 
+
+  const handleSettingsIconClick = () => {
+    setActiveTab('profile');
+  };
 
   return (
     <div className="settings-container">
       <div className="settings-sidebar">
         <h2>Settings</h2>
+        <button onClick={handleSettingsIconClick}>⚙️ Settings</button>
         <ul>
           <li onClick={() => setActiveTab('profile')} className={activeTab === 'profile' ? 'active' : ''}>Profile</li>
           <li onClick={() => setActiveTab('account')} className={activeTab === 'account' ? 'active' : ''}>Account</li>

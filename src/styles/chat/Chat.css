@@ -1,10 +1,29 @@
+.app-container {
+  display: flex;
+  height: 100vh; /* Full height of the viewport */
+}
 
+.sidebar {
+  width: 100px; /* Fixed width for the sidebar */
+  background: #0A0A0A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
 
-.mainpage-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    overflow: hidden;
-    height:  100vh;
-    
+.main-content {
+  display: flex;
+  flex: 1; /* Take the remaining space */
+  flex-direction: row;
+}
+
+.chat-list-container {
+  width: 30%; /* Adjust width as needed */
+  background-color: #ffffff;
+  border-right: 1px solid #ccc;
+}
+
+.chat-area {
+ 
 }

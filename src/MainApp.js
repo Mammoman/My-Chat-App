@@ -41,11 +41,16 @@ const MainApp = () => {
       <Sidebar signUserOut={signUserOut} />
       <div className="main-content">
         <ChatList rooms={rooms} selectedRoom={room} onSelectRoom={setRoom} setRoom={setRoom} />
-        {room ? (
-          <Chat room={room} />
-        ) : null}
+        <div className="chat-area">
+          {room ? (
+            <Chat room={room} />
+          ) : (
+            <div className="chat-area-container">
+              <p>Select a room to start chatting!</p>
+            </div>
+          )}
+        </div>
       </div>
-     
     </div>
   );
 };

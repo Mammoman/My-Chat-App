@@ -1,47 +1,20 @@
-.App {
-  text-align: center;
+:root {
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0A0A0A;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  margin: 0;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-.mainpage-containe {
+.mainpage-container {
   display: flex;
+  flex:1;
   flex-direction: row;
-  width: 100%;
+  width: 100vh;
   overflow: hidden;
   height:  100vh;
   
@@ -53,18 +26,22 @@
 }
 
 .sidebar {
-  width: 100px; /* Adjust width as needed */
+  width: 100px;
+  height: 100%;
   background: #0A0A0A;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  justify-content: space-between;
+  padding: 0% ;
 }
 
 .main-content {
-  flex: 1;
   display: flex;
-  flex-direction: row;
+    flex-direction: row;
+    width: 100%;
+    overflow: hidden;
+    height:  100vh;
 }
 
 .chat-list-container {
@@ -81,4 +58,55 @@
 
 .sign-out {
   margin: 10px;
+}
+
+.chat-area-container{
+  flex: 1; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  height: 100vh ; 
+  border: 4px inset #1e1e1e;
+}
+
+.chat-area p{
+  font-size: 44px;
+}
+
+
+body.dark-theme {
+  background-color: #ffffff;
+  color: #ffffff;
+}
+
+.dark-theme .settings-content {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+.dark-theme .settings-sidebar {
+  background-color: #2c2c2c;
+  border-right: 1px solid #444;
+}
+
+.dark-theme .settings-sidebar li.active {
+  background-color: #3a3a3a;
+}
+
+.dark-theme input,
+.dark-theme select,
+.dark-theme textarea {
+  background-color: #333;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+.dark-theme button {
+  background-color: #444;
+  color: #ffffff;
+}
+
+.dark-theme button:hover {
+  background-color: #555;
 }
