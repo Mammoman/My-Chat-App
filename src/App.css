@@ -8,7 +8,9 @@ body{
   display: flex;
   height: 100vh;
   margin: 0;
+  background-color: #0A0A0A;
 }
+
 
 .mainpage-container {
   display: flex;
@@ -18,8 +20,8 @@ body{
     height: 100vh;
 }
 
+
 .chat-area-container{ 
-  
   display: flex;
   flex-direction: column;
   background: #fff;

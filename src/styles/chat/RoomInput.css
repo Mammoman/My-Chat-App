@@ -1,0 +1,31 @@
+.room{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+}
+
+.room label{
+   font-size: 24px;
+}
+
+.room input{
+   font-size: 14px ;
+   padding-left: ;
+   padding-right: ;
+   padding-bottom: ;
+   padding-right: ;
+   width: 50%;
+}
+
+.room button{
+   background-color: black;
+   border: ; 
+   padding: 14px  20px;
+   width: 50%;
+   align-self: center;
+}
+
+.room button:hover{
+    box-shadow: 4px 4px 4px black;
+    padding: 20px;
+}
