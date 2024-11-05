@@ -55,8 +55,12 @@ const Chat = (props) => {
 
   return (
          <div className="message-area">
-         {room ?  (
-      <>
+         {!room ?  (
+       <div className="no-chat-selected">
+       <p>Select a chat to start messaging</p>
+   </div>
+    ) : (
+<>
       <div className='message-header'>
         <h1>Welcome user : {room}</h1>
         {userEmail ? (
@@ -97,14 +101,9 @@ const Chat = (props) => {
         <button type='submit' className='action-btn plus-btn'><PlaneIcon/></button>
       </form>
         </>
-    ) : (
-          <div className="message-area">
-              <p>Select a chat to start messaging</p>
-          </div>
-            )}
-
+  )}
     </div>
-   
+
   );
 };
 
