@@ -12,68 +12,36 @@ body{
 
 .mainpage-container {
   display: flex;
-  flex:1;
-  flex-direction: row;
-  width: 100vh;
-  overflow: hidden;
-  height:  100vh;
-  
-}
-
-.app-container {
-  display: flex;
-  height: 100vh;
-}
-
-.sidebar {
-  width: 100px;
-  height: 100%;
-  background: #0A0A0A;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0% ;
-}
-
-.main-content {
-  display: flex;
     flex-direction: row;
     width: 100%;
     overflow: hidden;
-    height:  100vh;
+    height: 100vh;
 }
 
-.chat-list-container {
-  width: 30%; /* Adjust width as needed */
-  background-color: #ffffff;
-  border-right: 1px solid #ccc;
+.chat-area-container{ 
+  
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  min-width: 0;
+  border-radius: 20px;
+  border:  1px solid  #000000;
+  margin:  14px;
+  overflow-y: auto;
+  height: 100vh;
 }
 
-.chat-container {
+.chat-area-container4 {
   flex: 1;
   display: flex;
   flex-direction: column;
-}
-
-.sign-out {
-  margin: 10px;
-}
-
-.chat-area-container{
-  flex: 1; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f0f0f0;
-  height: 100vh ; 
-  border: 4px inset #1e1e1e;
+  overflow-y: auto;
+  width: 100%;
 }
 
 .chat-area p{
   font-size: 44px;
 }
-
 
 body.dark-theme {
   background-color: #ffffff;

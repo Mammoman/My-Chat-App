@@ -25,12 +25,6 @@
   color: var(--text-primary);
 }
 
-.chat-list-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px;
-}
-
 .chat-header p {
   font-size: 14px;
   color: #77838f;
@@ -61,24 +55,6 @@
   text-align: center;
 }
 
-.chat-item {
-  display: flex;
-  padding: 12px;
-  gap: 12px;
-  cursor: pointer;
-  border-radius: 8px;
-  margin-bottom: 4px;
-  transition: background-color 0.2s;
-}
-
-.chat-item:hover {
-  background-color: #f8f9fc;
-}
-
-.chat-item.active {
-  background-color: #f8f9fc;
-}
-
 .chat-avatar {
   position: relative;
   width: 48px;
@@ -90,21 +66,6 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-}
-
-.status {
-  position: absolute;
-  bottom: 2px;
-  right: 2px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #77838f;
-  border: 2px solid #fff;
-}
-
-.status.online {
-  background: #00c9a7;
 }
 
 .chat-info {
@@ -125,40 +86,6 @@
   margin: 0;
 }
 
-.time {
-  font-size: 12px;
-  color: #77838f;
-}
-
-.chat-message {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.chat-message p {
-  flex: 1;
-  font-size: 13px;
-  color: #77838f;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.unread-badge {
-  background: #ff3b30;
-  color: white;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 10px;
-  min-width: 20px;
-  text-align: center;
-}
-
-.pin-icon {
-  font-size: 12px;
-}
 
 .messages-section {
   flex: 1;

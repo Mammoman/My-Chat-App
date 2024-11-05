@@ -37,9 +37,12 @@ const MainApp = () => {
   }
 
   return (
-    <div className="app-container">
+
+  
+      
+      <div className="main-container">
       <Sidebar signUserOut={signUserOut} />
-      <div className="main-content">
+      
         <ChatList rooms={rooms} selectedRoom={room} onSelectRoom={setRoom} setRoom={setRoom} />
         <div className="chat-area">
           {room ? (
@@ -51,7 +54,7 @@ const MainApp = () => {
           )}
         </div>
       </div>
-    </div>
+      
   );
 };
 

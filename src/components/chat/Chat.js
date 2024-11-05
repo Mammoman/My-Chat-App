@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { addDoc, collection, onSnapshot, serverTimestamp, query, orderBy } from 'firebase/firestore';
 import { auth, db } from '../../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { AiPhone02Icon, EthereumEllipseIcon, PlusSignIcon, PlaneIcon } from 'hugeicons-react';
 import '../../styles/chat/MessageArea.css'; // Import the CSS file
 
 const Chat = (props) => {
@@ -53,7 +54,9 @@ const Chat = (props) => {
   };
 
   return (
-    <div className="message-area">
+         <div className="message-area">
+         {room ?  (
+      <>
       <div className='message-header'>
         <h1>Welcome user : {room}</h1>
         {userEmail ? (
@@ -61,6 +64,11 @@ const Chat = (props) => {
         ) : (
           <p>User not authenticated</p>
         )}
+      
+                  <div className="header-actions">
+        <button className="action-btn"><AiPhone02Icon className='phone-ma-btn'/></button>
+        <button className="action-btn"><EthereumEllipseIcon className='ellipsisV-ma-btn'/></button>
+                   </div>
       </div>
       
       <div className="message-content"> 
@@ -69,19 +77,34 @@ const Chat = (props) => {
             <div className="message-bubble">
               <span>{message.user}</span>
               <p>{message.text}</p>
+              <p>{message.serverTimestamp}</p>
             </div>
           </div>
         ))}
       </div>
       <form onSubmit={handleSubmit} className='message-box'>
-        <input className='message-input' 
+      <button className="action-btn plus-btn" type="submit">
+          <PlusSignIcon />
+       </button>
+        <input
+          type="text"
+          className='message-input' 
           placeholder='Type here...'
           onChange={(e) => setNewMessage(e.target.value)}
           value={newMessage}
         />
-        <button type='submit' className='action-btn plus-btn'>Send</button>
+      
+        <button type='submit' className='action-btn plus-btn'><PlaneIcon/></button>
       </form>
+        </>
+    ) : (
+          <div className="message-area">
+              <p>Select a chat to start messaging</p>
+          </div>
+            )}
+
     </div>
+   
   );
 };
 
