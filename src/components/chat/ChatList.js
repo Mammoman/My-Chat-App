@@ -1,10 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/chat/ChatList.css';
 import RoomInput from './RoomInput';
 import { Search02Icon } from 'hugeicons-react';
+import { auth } from '../../config/firebase';
 
 const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredRooms, setFilteredRooms] = useState([]);
+
+  useEffect(() => {
+    if (!rooms) return;
+    
+    // Filter rooms based on permissions and search query
+    const userRooms = rooms.filter(room => {
+      const matchesSearch = room.name?.toLowerCase().includes(searchQuery.toLowerCase());
+      const hasPermission = room.type === 'public' || 
+        (room.participants && room.participants.includes(auth.currentUser?.uid));
+      
+      return matchesSearch && hasPermission;
+    });
+
+    setFilteredRooms(userRooms);
+  }, [rooms, searchQuery]);
 
   return (
     <div className="chat-list-container">
@@ -16,6 +34,8 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
             <input 
               type="text" 
               placeholder="Search rooms..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setIsSearchFocused(true)}
               onBlur={() => setIsSearchFocused(false)}
             />
@@ -24,7 +44,7 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
       </div>
 
       <div className="rooms-container">
-        {rooms && rooms.map((room) => (
+        {filteredRooms.map((room) => (
           <div 
             key={room.id}
             className={`room-item ${selectedRoom === room.id ? 'active' : ''}`}
@@ -34,9 +54,9 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
               <div className="avatar-placeholder" />
             </div>
             <div className="room-info">
-              <h4>{room.name || room.id}</h4>
-              <p>Click to join the conversation</p>
-            </div>
+  <h4>{room.displayName || room.name || room.id}</h4>
+  <p>{room.type === 'private' ? 'Private Chat' : 'Public Room'}</p>
+     </div>
           </div>
         ))}
       </div>
