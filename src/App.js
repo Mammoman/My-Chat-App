@@ -39,15 +39,18 @@ const App = () => {
   }
 
   return (
-      <div className="mainpage-container">
-      <Sidebar signUserOut={signUserOut} />
-      
-        <ChatList rooms={rooms} selectedRoom={room} onSelectRoom={setRoom} setRoom={setRoom} />
-         <Chat room={room} />
-      </div>
+    <div className="mainpage-container">
+    <Sidebar signUserOut={signUserOut} />
+    <ChatList rooms={rooms} selectedRoom={room} onSelectRoom={setRoom} />
+    <Chat room={room} />
+  </div>
       
   );
 };
 
 export default App; 
 
+
+ 
+
+ 
