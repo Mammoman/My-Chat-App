@@ -27,7 +27,7 @@ const Profile = () => {
       <label>Username</label>
       <input type="text" value={username} onChange={handleUsernameChange} />
       <label>About me</label>
-      <textarea defaultValue="What can I say? bllh bllh" />
+      <textarea defaultValue="What can I say?" />
       <button className="save-changes">Save changes</button>
     </div>
   );
