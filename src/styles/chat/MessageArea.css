@@ -1,5 +1,7 @@
 .message-area {
     display: flex;
+    flex: 1;
+    width: 850px;
     flex-direction: column;
     background: #fff;
     min-width: 0;
