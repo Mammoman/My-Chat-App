@@ -54,9 +54,15 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
               <div className="avatar-placeholder" />
             </div>
             <div className="room-info">
-  <h4>{room.displayName || room.name || room.id}</h4>
-  <p>{room.type === 'private' ? 'Private Chat' : 'Public Room'}</p>
-     </div>
+              <h4>{room.displayName || room.name || room.id}</h4>
+              <p>{room.type === 'private' ? 'Private Chat' : 'Public Room'}</p>
+              {room.lastMessage && (
+                <p className="last-message">
+                  <span className="sender">{room.lastMessage.sender}: </span>
+                  {room.lastMessage.text}
+                </p>
+              )}
+            </div>
           </div>
         ))}
       </div>

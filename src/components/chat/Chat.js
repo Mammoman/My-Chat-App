@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { 
   addDoc, 
   collection, 
@@ -19,11 +19,24 @@ import '../../styles/chat/MessageArea.css';
 
 const Chat = (props) => {
   const { room } = props;
+  const messageContentRef = useRef(null)
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [userEmail, setUserEmail] = useState(null);
   const [joinRequest, setJoinRequest] = useState(null);
   const [isRoomCreator, setIsRoomCreator] = useState(false);
+  const [selectedReply, setSelectedReply] = useState(null);
+  const [selectedMessageId, setSelectedMessageId] = useState(null);
+
+  const scrollToBottom = () => {
+    if (messageContentRef.current) {
+      messageContentRef.current.scrollTop = messageContentRef.current.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   useEffect(() => {
     if (!room) return;
@@ -80,8 +93,14 @@ const Chat = (props) => {
         createdAt: serverTimestamp(),
         user: auth.currentUser ? auth.currentUser.email : 'Guest',
         room,
+        replyTo: selectedReply ? {
+          id: selectedReply.id,
+          text: selectedReply.text,
+          user: selectedReply.user
+        } : null
       });
       setNewMessage("");
+      setSelectedReply(null);
     } catch (error) {
       console.error("Error sending message:", error);
     }
@@ -134,6 +153,15 @@ const Chat = (props) => {
     }
   };
 
+  const handleReply = (message) => {
+    setSelectedReply(message);
+    messageContentRef.current?.focus();
+  };
+
+  const handleMessageClick = (messageId) => {
+    setSelectedMessageId(messageId === selectedMessageId ? null : messageId);
+  };
+
   return (
     <div className="message-area">
       {!room ? (
@@ -143,7 +171,7 @@ const Chat = (props) => {
       ) : (
         <>
           <div className='message-header'>
-            <h1>Welcome user : {room}</h1>
+            <h1>Welcome user : {room.name}</h1>
             {userEmail ? (
               <h2>User Email: {userEmail}</h2>
             ) : (
@@ -155,30 +183,78 @@ const Chat = (props) => {
             </div>
           </div>
           
-          <div className="message-content"> 
+          <div className="message-content"  ref={messageContentRef}> 
             {messages.map((message) => (
-              <div key={message.id} className={`message ${message.user === userEmail ? 'sent' : 'received'}`}>
+              <div 
+                key={message.id} 
+                className={`message ${message.user === userEmail ? 'sent' : 'received'}`}
+                onClick={() => handleMessageClick(message.id)}
+              >
                 <div className="message-bubble">
+                  {message.replyTo && (
+                    <div className="reply-content">
+                      <span className="reply-user">{message.replyTo.user}</span>
+                      <p className="reply-text">{message.replyTo.text}</p>
+                    </div>
+                  )}
                   <span>{message.user}</span>
                   <p>{message.text}</p>
-                  <p>{message.serverTimestamp}</p>
+                  
+                  {selectedMessageId === message.id && (
+                    <div className="message-overlay">
+                      <button 
+                        className="overlay-reply-button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleReply(message);
+                          setSelectedMessageId(null);
+                        }}
+                      >
+                        Reply
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
           </div>
+        
           <form onSubmit={handleSubmit} className='message-box'>
-            <button className="action-btn plus-btn" type="button">
-              <PlusSignIcon />
-            </button>
-            <input
-              type="text"
-              className='message-input' 
-              placeholder='Type here...'
-              onChange={(e) => setNewMessage(e.target.value)}
-              value={newMessage}
-            />
-            <button type='submit' className='action-btn plus-btn'><PlaneIcon/></button>
+            
+            {selectedReply && (
+              <div className="reply-preview">
+                <div className="reply-preview-content">
+                  <span className="reply-user">{selectedReply.user}</span>
+                  <p className="reply-text">{selectedReply.text}</p>
+                </div>
+                <button 
+                  type="button" 
+                  className="cancel-reply" 
+                  onClick={() => setSelectedReply(null)}
+                >
+                  ×
+                </button>
+              </div>
+            )}
+            <div className="message-box">
+              <button className="action-btn plus-btn" type="button">
+                <PlusSignIcon />
+              </button>
+              <input
+                type="text"
+                className='message-input'
+                placeholder='Type here...'
+                onChange={(e) => setNewMessage(e.target.value)}
+                value={newMessage}
+              />
+              <button type='submit' className='action-btn plus-btn'>
+                <PlaneIcon/>
+              </button>
+              </div>
           </form>
+          
+        
+         
           {isRoomCreator && joinRequest && (
             <ChatRequestPopup
               requestingUser={joinRequest}
@@ -189,6 +265,7 @@ const Chat = (props) => {
         </>
       )}
     </div>
+    
   );
 };
 
