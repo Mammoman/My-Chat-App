@@ -1,49 +1,74 @@
-{/*import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect } from 'react';
 import '../../styles/chat/ChatList.css';
+import RoomInput from './RoomInput';
+import { Search02Icon } from 'hugeicons-react';
+import { auth } from '../../config/firebase';
 
-const ChatList = ({ users, quickAccess, selectedUser, onSelectUser }) => {
-  return (
+const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredRooms, setFilteredRooms] = useState([]);
+
+  useEffect(() => {
+    if (!rooms) return;
     
+    // Filter rooms based on permissions and search query
+    const userRooms = rooms.filter(room => {
+      const matchesSearch = room.name?.toLowerCase().includes(searchQuery.toLowerCase());
+      const hasPermission = room.type === 'public' || 
+        (room.participants && room.participants.includes(auth.currentUser?.uid));
+      
+      return matchesSearch && hasPermission;
+    });
+
+    setFilteredRooms(userRooms);
+  }, [rooms, searchQuery]);
+
+  return (
     <div className="chat-list-container">
       <div className="chat-list-header">
-        <h2>Messages</h2>
-        <p>23 members, 10 online</p>
-        <div className=''>
-        <div className="search">
+        <h2 className="gradient-text">Chat Rooms</h2>
+        <div className={`search ${isSearchFocused ? 'focused' : ''}`}>
           <div className="chat-search-container">
-            <input type="text" placeholder="Search" /> 
+            <Search02Icon className="search-icon" />
+            <input 
+              type="text" 
+              placeholder="Search rooms..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => setIsSearchFocused(false)}
+            />
           </div>
-          <span>Search</span>
-        </div>
         </div>
       </div>
 
-      <div className="messages-section">
-        {users.map(user => (
+      <div className="rooms-container">
+        {filteredRooms.map((room) => (
           <div 
-            key={user.id} 
-            className={`chat-item ${selectedUser?.id === user.id ? 'active' : ''}`}
-            onClick={() => onSelectUser(user)}
+            key={room.id}
+            className={`room-item ${selectedRoom === room.id ? 'active' : ''}`}
+            onClick={() => onSelectRoom(room.id)}
           >
-            <div className="chat-avatar">
-              <img src={user.avatar} alt="" className="avatar-image" />
-              <div className={`status ${user.isOnline ? 'online' : ''}`}></div>
+            <div className="room-avatar">
+              <div className="avatar-placeholder" />
             </div>
-            <div className="chat-info">
-              <div className="chat-header">
-                <h4>{user.name}</h4>
-                <span className="time">{user.time}</span>
-              </div>
-              <div className="chat-message">
-                <p>{user.message}</p>
-                {user.pinned && <span className="pin-icon">📌</span>}
-                {user.unread && <div className="unread-badge">{user.unread}</div>}
-              </div>
+            <div className="room-info">
+              <h4>{room.displayName || room.name || room.id}</h4>
+              <p>{room.type === 'private' ? 'Private Chat' : 'Public Room'}</p>
+              {room.lastMessage && (
+                <p className="last-message">
+                  <span className="sender">{room.lastMessage.sender}: </span>
+                  {room.lastMessage.text}
+                </p>
+              )}
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="room-input-wrapper">
+        <RoomInput setRoom={onSelectRoom} />
       </div>
     </div>
   );

@@ -1,0 +1,70 @@
+.room{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+}
+
+.room label{
+   font-size: 24px;
+}
+
+.room input{
+   font-size: 14px ;
+   padding-left: ;
+   padding-right: ;
+   padding-bottom: ;
+   padding-right: ;
+   width: 50%;
+}
+
+.room button{
+   background-color: black;
+   border: ; 
+   padding: 14px  20px;
+   width: 50%;
+   align-self: center;
+}
+
+.room button:hover{
+    box-shadow: 4px 4px 4px black;
+    padding: 20px;
+}
+
+.popup {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+ }
+ 
+ .popup-content {
+   background-color: white;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .popup-buttons {
+   display: flex;
+   justify-content: space-around;
+   margin-top: 20px;
+ }
+ 
+ .popup-buttons button {
+   padding: 8px 20px;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   background-color: #007bff;
+   color: white;
+ }
+ 
+ .popup-buttons button:hover {
+   background-color: #0056b3;
+ }

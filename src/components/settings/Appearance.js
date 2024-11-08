@@ -1,6 +1,6 @@
-{/*import React, { useState, useEffect } from 'react';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState, useEffect } from 'react';
+import { Moon02Icon, Sun01Icon } from 'hugeicons-react';
+
 
 const Appearance = () => {
   const [theme, setTheme] = useState('light');
@@ -18,8 +18,8 @@ const Appearance = () => {
       <h3>Appearance Settings</h3>
       <label>Theme</label>
       <select value={theme} onChange={toggleTheme}>
-      <option value="light" ><FontAwesomeIcon icon={faMoon} />Light</option>
-      <option><FontAwesomeIcon icon={faSun} values='dark' />Dark</option>
+      <option value="light" ><Moon02Icon />Light</option>
+      <option><Sun01Icon values='dark' />Dark</option>
       </select>
 
       

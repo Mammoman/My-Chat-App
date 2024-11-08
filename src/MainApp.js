@@ -7,12 +7,10 @@ import Sidebar from './components/chat/Sidebar';
 import { signOut } from 'firebase/auth';
 import { auth, db } from './config/firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
-import './App.css';
-
 
 const cookies = new Cookies();
 
-const App = () => {
+const MainApp = () => {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [room, setRoom] = useState(null);
   const [rooms, setRooms] = useState([]);
@@ -39,18 +37,25 @@ const App = () => {
   }
 
   return (
-    <div className="mainpage-container">
-    <Sidebar signUserOut={signUserOut} />
-    <ChatList rooms={rooms} selectedRoom={room} onSelectRoom={setRoom} />
-    <Chat room={room} />
-  </div>
+
+  
+      
+      <div className="main-container">
+      <Sidebar signUserOut={signUserOut} />
+      
+        <ChatList rooms={rooms} selectedRoom={room} onSelectRoom={setRoom} setRoom={setRoom} />
+        <div className="chat-area">
+          {room ? (
+            <Chat room={room} />
+          ) : (
+            <div className="chat-area-container">
+              <p>Select a room to start chatting!</p>
+            </div>
+          )}
+        </div>
+      </div>
       
   );
 };
 
-export default App; 
-
-
- 
-
- 
+export default MainApp; 
