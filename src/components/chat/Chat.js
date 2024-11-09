@@ -13,7 +13,7 @@ import {
 } from 'firebase/firestore';
 import { auth, db } from '../../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { AiPhone02Icon, EthereumEllipseIcon, PlusSignIcon, PlaneIcon } from 'hugeicons-react';
+import { AiPhone02Icon, EthereumEllipseIcon, PlusSignIcon, MailSend02Icon, Cancel02Icon } from 'hugeicons-react';
 import ChatRequestPopup from './ChatRequestPopup';
 import '../../styles/chat/MessageArea.css';
 
@@ -183,37 +183,49 @@ const Chat = (props) => {
             </div>
           </div>
           
-          <div className="message-content"  ref={messageContentRef}> 
+          <div className="message-content" ref={messageContentRef}> 
             {messages.map((message) => (
               <div 
                 key={message.id} 
-                className={`message ${message.user === userEmail ? 'sent' : 'received'}`}
+                className={`message-container ${message.user === userEmail ? 'sent' : 'received'}`}
                 onClick={() => handleMessageClick(message.id)}
               >
-                <div className="message-bubble">
-                  {message.replyTo && (
-                    <div className="reply-content">
-                      <span className="reply-user">{message.replyTo.user}</span>
-                      <p className="reply-text">{message.replyTo.text}</p>
-                    </div>
-                  )}
-                  <span>{message.user}</span>
-                  <p>{message.text}</p>
-                  
-                  {selectedMessageId === message.id && (
-                    <div className="message-overlay">
-                      <button 
-                        className="overlay-reply-button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleReply(message);
-                          setSelectedMessageId(null);
-                        }}
-                      >
-                        Reply
-                      </button>
-                    </div>
-                  )}
+                <div className="message-user-avatar">
+                  {message.user.charAt(0).toUpperCase()}
+                </div>
+                <div className="message-content-wrapper">
+                  <span className="message-user-email">{message.user}</span>
+                  <div className="message-bubble">
+                    {message.replyTo && (
+                      <div className="reply-content">
+                        <span className="reply-user">{message.replyTo.user}</span>
+                        <p className="reply-text">{message.replyTo.text}</p>
+                      </div>
+                    )}
+                    <p>{message.text}</p>
+                    <span className="message-status">
+                      {message.createdAt ? (
+                        <span className="status-icon status-received">✓✓</span>
+                      ) : (
+                        <span className="status-icon status-pending">⏳</span>
+                      )}
+                    </span>
+                    
+                    {selectedMessageId === message.id && (
+                      <div className="message-overlay">
+                        <button 
+                          className="overlay-reply-button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleReply(message);
+                            setSelectedMessageId(null);
+                          }}
+                        >
+                          Reply
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
@@ -232,7 +244,7 @@ const Chat = (props) => {
                   className="cancel-reply" 
                   onClick={() => setSelectedReply(null)}
                 >
-                  ×
+                  <Cancel02Icon/>
                 </button>
               </div>
             )}
@@ -248,7 +260,7 @@ const Chat = (props) => {
                 value={newMessage}
               />
               <button type='submit' className='action-btn plus-btn'>
-                <PlaneIcon/>
+                <MailSend02Icon/>
               </button>
               </div>
           </form>
