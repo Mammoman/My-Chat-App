@@ -33,14 +33,15 @@ const UserGuide = ({ onClose }) => {
   const guides = [
     {
       title: "Welcome new user",
-      content: ["To My-Chat-App", "Here's a breakdown on how to use this app."]
+      content: ["To My-Chat-App", "Here's a breakdown on how to use this app or figure it out yourself bozo."]
     },
     {
       title: "Setting up a Room",
       content: [
         "1. Room visibility can be set to either Private or Public",
         "2. Private rooms are for one-on-one conversations",
-        "3. Public rooms are for group chats"
+        "3. Public rooms are for group chats",
+        "4. You can invite other users to your room by clicking the invite button"
       ]
     },
     {
@@ -48,7 +49,9 @@ const UserGuide = ({ onClose }) => {
       content: [
         "1. Type your message in the input box",
         "2. Press enter or click the send button to send",
-        "3. You can see when messages are delivered"
+        "3. You can see when messages are delivered",
+        "4. You can reply to messages by clicking on them"
+
       ]
     },
     {
@@ -63,7 +66,7 @@ const UserGuide = ({ onClose }) => {
       title: "Need Help?",
       content: [
         "Contact support if you need assistance",
-        "Email: support@mychatapp.com"
+        "Email: support@nooneiscoming.com"
       ]
     }
   ];

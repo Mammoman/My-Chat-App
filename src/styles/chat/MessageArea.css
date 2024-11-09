@@ -8,7 +8,7 @@
     border-radius: 20px;
     border:  1px solid  #d60404;
     margin:  14px;
-   
+    font-family: 
   }
   
   .message-header {
@@ -112,15 +112,15 @@
   .message-bubble {
     background: #f8f9fc;
     padding: 12px 16px;
-    border-radius: 12px;
+    border-radius: 20px;
     position: relative;
     width: 100%;
     cursor: pointer;
   }
   
   .message.sent .message-bubble {
-    background: skyblue;
-    color: white;
+    background: rgb(17, 168, 12);
+    color: rgb(255, 255, 255);
   }
   
   .message-bubble p {
@@ -189,7 +189,6 @@
  }
 
 
-
   .message-box {
     display: flex;
     justify-content: end;
@@ -220,6 +219,41 @@
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
   }
 
+  .reply-content{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-left:  3px solid #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    padding:   8px;
+    word-wrap: break-word;
+  }
+
+  .message.received .reply-content{
+    background: #f8f9fc;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    border-left:  3px solid #000000;
+  }
+
+  .reply-content span{
+    color: #edf2f9;
+    align-self: flex-end;
+  }
+
+  .reply-content p{
+    color: #edf2f9;
+  }
+
+  .message.received .reply-content p{
+    color: #000000;
+  }
+
+  .message.received .reply-content span{
+    color: #000000;
+  }
+
   .reply-preview {
     display: flex;
     align-items: center;
@@ -227,10 +261,11 @@
     padding: 8px 12px;
     margin: 0 8px 8px 8px;
     border-radius: 8px;
-    border-left: 3px solid #007bff;
+    border-left: 3px solid #000000;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     max-width: 40%;
     overflow: hidden;
+    animation: fadeIn 0.2s ease-in-out;
   }
 
   .reply-preview-content {
@@ -242,9 +277,11 @@
   .reply-user {
     font-weight: bold;
     font-size: 0.8em;
-    color: #666;
+    color: #4d4a4a;
     display: block;
     margin-bottom: 2px;
+    border-radius: 12px;
+    
   }
 
   .reply-text {
@@ -314,4 +351,66 @@
   .message.sent .message-overlay {
     left: -60px;
     right: auto;
+  }
+
+  .message-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    max-width: 80%;
+  }
+
+  .message-container.sent {
+    flex-direction: row-reverse;
+    margin-left: auto;
+  }
+
+  .message-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #6c757d;
+  }
+
+  .message-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .message-user-email {
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 2px;
+  }
+
+  .message-status {
+    font-size: 12px;
+    margin-left: 8px;
+    color: #6c757d;
+  }
+
+  .status-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+    
+  }
+
+  .status-sent {
+    color: #28a745;
+    
+  }
+
+  .status-received {
+    color: #007bff;
+  }
+
+  .status-pending {
+    color: #ffc107;
   }

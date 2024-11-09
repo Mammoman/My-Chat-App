@@ -94,7 +94,7 @@ function RoomInput({ setRoom }) {
       setError('');
     } catch (error) {
       console.error("Error creating room:", error);
-      setError('Error creating room');
+      setError('Error creating room, omo go beg');
     }
   };
 
