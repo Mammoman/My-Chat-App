@@ -5,7 +5,7 @@ import { ArrowRight03Icon, Cancel02Icon } from 'hugeicons-react';
 const UserGuide = ({ onClose }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isAnimating, setIsAnimating] = useState(false);
-  const totalPages = 5;
+  const totalPages = 6;
 
   const handlePageChange = () => {
     if (isAnimating) return;
@@ -41,7 +41,7 @@ const UserGuide = ({ onClose }) => {
         "1. Room visibility can be set to either Private or Public",
         "2. Private rooms are for one-on-one conversations",
         "3. Public rooms are for group chats",
-        "4. You can invite other users to your room by clicking the invite button"
+        "4. You can invite other users to your room by clicking the invite button,There isn't one😂😂"
       ]
     },
     {
@@ -67,6 +67,13 @@ const UserGuide = ({ onClose }) => {
       content: [
         "Contact support if you need assistance",
         "Email: support@nooneiscoming.com"
+      ]
+    },{
+      title: "Well, you reached the last page",
+      content: [
+        "I hope you enjoy using this app",
+        "If you have any feedback, dont let me know",
+        "buzz off"
       ]
     }
   ];
