@@ -171,12 +171,17 @@ const Chat = (props) => {
       ) : (
         <>
           <div className='message-header'>
-            <h1>Welcome user : {room.name}</h1>
-            {userEmail ? (
-              <h2>User Email: {userEmail}</h2>
-            ) : (
-              <p>User not authenticated</p>
-            )}
+            <div className="header-info">
+              <h1>Welcome user : {room.name}</h1>
+              {userEmail ? (
+                <>
+                  <h2>User Email: {userEmail}</h2>
+                  <span className="member-count">{room.members?.length || 0} members</span>
+                </>
+              ) : (
+                <p>User not authenticated</p>
+              )}
+            </div>
             <div className="header-actions">
               <button className="action-btn"><AiPhone02Icon className='phone-ma-btn'/></button>
               <button className="action-btn"><EthereumEllipseIcon className='ellipsisV-ma-btn'/></button>
@@ -203,29 +208,29 @@ const Chat = (props) => {
                       </div>
                     )}
                     <p>{message.text}</p>
-                    <span className="message-status">
-                      {message.createdAt ? (
-                        <span className="status-icon status-received">✓✓</span>
-                      ) : (
-                        <span className="status-icon status-pending">⏳</span>
-                      )}
-                    </span>
-                    
-                    {selectedMessageId === message.id && (
-                      <div className="message-overlay">
-                        <button 
-                          className="overlay-reply-button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleReply(message);
-                            setSelectedMessageId(null);
-                          }}
-                        >
-                          Reply
-                        </button>
-                      </div>
-                    )}
                   </div>
+                  <span className="message-status">
+                    {message.createdAt ? (
+                      <span className="status-icon status-received">✓✓</span>
+                    ) : (
+                      <span className="status-icon status-pending">⏳</span>
+                    )}
+                  </span>
+                  
+                  {selectedMessageId === message.id && (
+                    <div className="message-overlay">
+                      <button 
+                        className="overlay-reply-button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleReply(message);
+                          setSelectedMessageId(null);
+                        }}
+                      >
+                        Reply
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
