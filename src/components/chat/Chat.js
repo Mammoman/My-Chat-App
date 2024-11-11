@@ -192,7 +192,7 @@ const Chat = (props) => {
             {messages.map((message) => (
               <div 
                 key={message.id} 
-                className={`message-container ${message.user === userEmail ? 'sent' : 'received'}`}
+                className={`message ${message.user === userEmail ? 'sent' : 'received'}`}
                 onClick={() => handleMessageClick(message.id)}
               >
                 <div className="message-user-avatar">
@@ -200,6 +200,7 @@ const Chat = (props) => {
                 </div>
                 <div className="message-content-wrapper">
                   <span className="message-user-email">{message.user}</span>
+                  <div className="message-bubble-wrapper">
                   <div className="message-bubble">
                     {message.replyTo && (
                       <div className="reply-content">
@@ -209,6 +210,8 @@ const Chat = (props) => {
                     )}
                     <p>{message.text}</p>
                   </div>
+                  </div>
+                
                   <span className="message-status">
                     {message.createdAt ? (
                       <span className="status-icon status-received">✓✓</span>

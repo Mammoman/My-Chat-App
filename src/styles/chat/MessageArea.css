@@ -28,12 +28,6 @@
     gap: 4px;
   }
 
-  .member-count {
-    font-size: 12px;
-    color: #77838f;
-    margin-top: 2px;
-  }
-
   .message-header h1{
     font-size: 14px;
   }
@@ -41,30 +35,17 @@
   .message-header h2{
     font-size: 12px ;
   }
+
+  .member-count {
+    font-size: 12px;
+    color: #77838f;
+    margin-top: 2px;
+  }
   
   .user-info {
     display: flex;
     align-items: center;
     gap: 16px;
-  }
-  
-  .chat-avatar {
-    position: relative;
-    width: 40px;
-    height: 40px;
-  }
-  
-  .avatar-image {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  .user-details h2 {
-    font-size: 16px;
-    color: #1e2022;
-    margin-bottom: 4px;
   }
   
   .members-count {
@@ -89,10 +70,6 @@
   .action-btn:hover {
     background: #f8f9fc;
   }
-
-  .search-ma-btn{
-    font-size: 13px;
-  }
   
   .message-content {
     flex: 1;
@@ -103,13 +80,19 @@
     gap: 16px;
   }
   
-  .message {
+  .message-bubble-wrapper{
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    max-width: 60%;
+  }
+
+  .message {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    max-width: 80%;
     white-space: pre-wrap;
     word-wrap: break-word;
+    width: 100%;
   }
   
   .message.received {
@@ -118,11 +101,14 @@
   
   .message.sent {
     align-self: flex-end;
+    justify-content: flex-end;
   }
   
   .message-bubble {
     background: #f8f9fc;
     padding: 12px 16px;
+    width: fit-content;
+    max-width: 100%; 
     border-radius: 20px;
     position: relative;
     cursor: pointer;
@@ -130,9 +116,16 @@
     word-break: break-all;
   }
   
-  .message.sent .message-bubble {
+  .message.sent .message-bubble   {
+    align-self: flex-end;
+    justify-content: flex-end;
     background: rgb(17, 168, 12);
-    color: rgb(255, 255, 255);
+    color: #fffffff7;
+  }
+
+  .message.received .message-bubble {
+     background-color: #e1dede;
+     color: #1b1a1a;
   }
   
   .message-bubble p {
@@ -154,13 +147,39 @@
   .message.sent .message-bubble .time {
     color: rgba(255, 255, 255, 0.8);
   }
-  
-  .message-reactions {
-    display: flex;
-    gap: 4px;
-    margin-top: 4px;
+
+  .message-status {
+    font-size: 12px;
+    color: #6c757d;
+    position: absolute;
+    bottom: 10px;
   }
 
+  .message.sent .message-status {
+    left: 0;
+  }
+
+  .message.received .message-status {
+    right: 0;
+  }
+
+  .status-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .status-sent {
+    color: #28a745;
+  }
+
+  .status-received {
+    color: #007bff;
+  }
+
+  .status-pending {
+    color: #ffc107;
+  }
+  
   .last-message {
     font-size: 0.8em;
     color: #666;
@@ -170,21 +189,6 @@
     text-overflow: ellipsis;
   }
   
-  .sender {
-    font-weight: 600;
-  }
-  
-  .reaction {
-    background: #fff;
-    border: 1px solid #edf2f9;
-    border-radius: 12px;
-    padding: 2px 8px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-
   .no-chat-selected {
     display: flex; 
     justify-content: center; 
@@ -293,7 +297,6 @@
     display: block;
     margin-bottom: 2px;
     border-radius: 12px;
-    
   }
 
   .reply-text {
@@ -365,16 +368,12 @@
     right: auto;
   }
 
-  .message-container {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    max-width: 80%;
-  }
-
   .message-container.sent {
+    display: flex;
     flex-direction: row-reverse;
     margin-left: auto;
+    width: 100%;
+    justify-content: flex-end;
   }
 
   .message-user-avatar {
@@ -402,34 +401,4 @@
     margin-bottom: 2px;
   }
 
-  .message-status {
-    font-size: 12px;
-    color: #6c757d;
-    position: absolute;
-    bottom: 5px;
-  }
-
-  .message.sent .message-status {
-    left: 0;
-  }
-
-  .message.received .message-status {
-    right: 0;
-  }
-
-  .status-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .status-sent {
-    color: #28a745;
-  }
-
-  .status-received {
-    color: #007bff;
-  }
-
-  .status-pending {
-    color: #ffc107;
-  }
+ 
