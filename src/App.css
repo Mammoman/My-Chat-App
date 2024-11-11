@@ -64,19 +64,202 @@ body.dark-theme {
   background-color: #3a3a3a;
 }
 
+ ::-webkit-scrollbar {
+  width: 8px;
+}
+
+ ::-webkit-scrollbar-track {
+  background: #bebebe;
+}
+
+ ::-webkit-scrollbar-thumb {
+  background: #ece8e8;
+  border-radius: 4px;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Scrollbar Dark Theme */
+.dark-theme ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark-theme ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.dark-theme ::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+
+
+.delete-room-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.delete-room-content {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 400px;
+  text-align: center;
+}
+
+.delete-room-title {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.delete-room-text {
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.delete-room-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.delete-room-button {
+  padding: 8px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.delete-room-button.confirm {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-room-button.confirm:hover {
+  background-color: #c82333;
+}
+
+.delete-room-button.cancel {
+  background-color: #6c757d;
+  color: white;
+}
+
+.delete-room-button.cancel:hover {
+  background-color: #5a6268;
+}
+
+/* Main Container Dark Theme */
+.dark-theme .mainpage-container {
+  background-color: #1a1a1a;
+}
+
+
+/* Chat List Container Dark Theme */
+.dark-theme .chat-list-container {
+  background-color: #2c2c2c;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .chat-list-header {
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #4f46e5 100%);
+  -webkit-background-clip: text;
+}
+
+
+
+/* Search Bar Dark Theme */
+.dark-theme .chat-search-container {
+  background: #333;
+  border-color: #444;
+}
+
+.dark-theme .chat-search-container input {
+  color: #ffffff;
+}
+
+.dark-theme .search.focused .chat-search-container {
+  border-color: #4f46e5;
+  background: #3a3a3a;
+}
+
+
+/* Room Items Dark Theme */
+.dark-theme .room-item {
+  border: 1px solid #444;
+}
+
+.dark-theme .room-item:hover {
+  background: rgba(79, 70, 229, 0.15);
+}
+
+.dark-theme .room-item.active {
+  background: rgba(79, 70, 229, 0.2);
+}
+
+.dark-theme .room-info h4 {
+  color: #ffffff;
+}
+
+.dark-theme .room-info p {
+  color: #999;
+}
+
+/* Message Area Dark Theme */
+.dark-theme .message-area {
+  background-color: #2c2c2c;
+  border-color: #444;
+}
+
+.dark-theme .message-header {
+  border-bottom: 1px solid #444;
+}
+
+.dark-theme .message-bubble {
+  background: #3a3a3a;
+  color: #ffffff;
+}
+
+.dark-theme .message.sent .message-bubble {
+  background: #4f46e5;
+}
+
+.dark-theme .message-box{
+  background: #1a1a1a;
+}
+
+
+
+/* Input Areas Dark Theme */
 .dark-theme input,
-.dark-theme select,
 .dark-theme textarea {
   background-color: #333;
   color: #ffffff;
   border: 1px solid #444;
 }
 
-.dark-theme button {
-  background-color: #444;
-  color: #ffffff;
-}
 
-.dark-theme button:hover {
-  background-color: #555;
-}
