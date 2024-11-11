@@ -12,20 +12,22 @@
   }
   
   .message-header {
-    padding: 20px;
+    padding:  10px;
     padding-bottom: 0;
     margin-bottom: 0;
     border-bottom: 1px solid #edf2f9;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: row;
     width: 100%;
+    justify-content: space-between;
   }
 
   .header-info {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    justify-content: space-around;
   }
 
   .message-header h1{
@@ -42,12 +44,6 @@
     margin-top: 2px;
   }
   
-  .user-info {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  
   .members-count {
     font-size: 13px;
     color: #77838f;
@@ -55,7 +51,9 @@
   
   .header-actions {
     display: flex;
-    gap: 16px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
   }
   
   .action-btn {
@@ -80,9 +78,18 @@
     gap: 16px;
   }
   
-  .message-bubble-wrapper{
+  .message.sent .message-bubble-wrapper{
     display: flex;
     flex-direction: column;
+    width: fit-content;
+    align-self: flex-end;
+  }
+
+  .message.received .message-bubble-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-self: flex-start;
   }
 
   .message {
@@ -337,6 +344,7 @@
   }
 
   .overlay-reply-button {
+   
     background: none;
     border: none;
     color: #666;
