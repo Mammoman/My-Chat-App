@@ -126,7 +126,7 @@
   .message.sent .message-bubble   {
     align-self: flex-end;
     justify-content: flex-end;
-    background: rgb(17, 168, 12);
+    background: rgb(80, 103, 19);
     color: #fffffff7;
   }
 
@@ -137,8 +137,9 @@
   
   .message-bubble p {
     margin: 0;
-    font-size: 8px;
+    font-size: 12px;
     line-height: 1.5;
+    color: #000000;
   }
 
   .message-bubble span{
@@ -260,13 +261,21 @@
     border-left:  3px solid #000000;
   }
 
+  .message.sent .reply-content{
+    background: #f8f9fc;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    border-left:  3px solid #000000;
+    color: #000000;
+  }
+
   .reply-content span{
-    color: #edf2f9;
+    color: #000000;
     align-self: flex-end;
   }
 
   .reply-content p{
-    color: #edf2f9;
+    color:  #000000;
   }
 
   .message.received .reply-content p{
