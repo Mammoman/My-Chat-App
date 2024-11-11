@@ -1,4 +1,5 @@
 .chat-list-container {
+  position: relative;
   width: 28%;
   min-width: 250px;
   max-width: 400px;

@@ -5,11 +5,13 @@ import { Search02Icon } from 'hugeicons-react';
 import { auth } from '../../config/firebase';
 import { doc, getDoc, updateDoc, arrayRemove, collection, getDocs, writeBatch } from 'firebase/firestore';
 import { db } from '../../config/firebase';
+import DeleteRoomPopup from './DeleteRoomPopup';
 
 const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredRooms, setFilteredRooms] = useState([]);
+  const [roomToDelete, setRoomToDelete] = useState(null);
 
   useEffect(() => {
     if (!rooms) return;
@@ -103,9 +105,7 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
               onClick={(e) => {
                 e.stopPropagation();
                 const isCreator = room.createdBy === auth.currentUser.uid;
-                if (window.confirm(`Are you sure you want to ${isCreator ? 'delete' : 'exit'} this room?`)) {
-                  handleDeleteRoom(room.id);
-                }
+                setRoomToDelete({ id: room.id, isCreator });
               }}
             >
               {room.createdBy === auth.currentUser.uid ? 'Delete' : 'Exit'}
@@ -117,6 +117,17 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
       <div className="room-input-wrapper">
         <RoomInput setRoom={onSelectRoom} />
       </div>
+
+      {roomToDelete && (
+        <DeleteRoomPopup
+          isCreator={roomToDelete.isCreator}
+          onConfirm={() => {
+            handleDeleteRoom(roomToDelete.id);
+            setRoomToDelete(null);
+          }}
+          onCancel={() => setRoomToDelete(null)}
+        />
+      )}
     </div>
   );
 };
