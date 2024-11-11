@@ -106,7 +106,7 @@ function RoomInput({ setRoom }) {
 
   return (
     <div className='room'>
-      <label>Enter Room name: </label>
+      <label className='room-label'>Enter Room name: </label>
       <div className='room-input'>
       <input ref={roomInputRef} />
       <select className='room-type' value={roomType} onChange={(e) => setRoomType(e.target.value)}>

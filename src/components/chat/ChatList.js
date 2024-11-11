@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/chat/ChatList.css';
 import RoomInput from './RoomInput';
-import { Search02Icon } from 'hugeicons-react';
+import { Moon01Icon, Search02Icon, Sun02Icon } from 'hugeicons-react';
 import { auth } from '../../config/firebase';
-import { doc, getDoc, updateDoc, arrayRemove, collection, getDocs, writeBatch } from 'firebase/firestore';
+import { doc,
+   getDoc, 
+   updateDoc, 
+   arrayRemove, 
+   collection, 
+   getDocs, 
+   writeBatch } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import DeleteRoomPopup from './DeleteRoomPopup';
 
@@ -12,6 +18,23 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredRooms, setFilteredRooms] = useState([]);
   const [roomToDelete, setRoomToDelete] = useState(null);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    return savedMode === 'true';
+  });
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
+    localStorage.setItem('darkMode', isDarkMode);
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   useEffect(() => {
     if (!rooms) return;
@@ -44,7 +67,7 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
           batch.delete(doc.ref);
         });
 
-        // Delete the room document
+        // Deletes the room document
         batch.delete(roomRef);
         await batch.commit();
 
@@ -67,10 +90,12 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
     <div className="chat-list-container">
       <div className="chat-list-header">
         <h2 className="gradient-text">Chat Rooms</h2>
-        <div className={`search ${isSearchFocused ? 'focused' : ''}`}>
+    <div className='header-buttom'>
+    <div className={`search ${isSearchFocused ? 'focused' : ''}`}>
           <div className="chat-search-container">
             <Search02Icon className="search-icon" />
             <input 
+            className='search-input'
               type="text" 
               placeholder="Search rooms..." 
               value={searchQuery}
@@ -79,6 +104,12 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
               onBlur={() => setIsSearchFocused(false)}
             />
           </div>
+        </div>
+        <div className={`darkmode-icon ${isDarkMode ? 'active' : ''}`}
+          onClick={toggleDarkMode}
+          title="Toggle dark mode">
+          {!isDarkMode ? <Moon01Icon/> : <Sun02Icon className='toggle-icon-1'/>}
+        </div>
         </div>
       </div>
 
@@ -129,6 +160,7 @@ const ChatList = ({ rooms, selectedRoom, onSelectRoom }) => {
         />
       )}
     </div>
+
   );
 };
 

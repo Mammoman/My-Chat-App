@@ -43,6 +43,16 @@
   100% { background-position: 0% 50%; }
 }
 
+.header-buttom{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.darkmode-icon toggle-icon-1{
+    background-color: yellow;
+}
+
 .search {
   margin: 20px 0;
   transition: all 0.3s ease;
@@ -68,12 +78,16 @@
 .search-icon {
   color: #6b7280;
   margin-right: 10px;
+  align-self: center;
 }
 
-.chat-search-container input {
+.chat-search-container .search-input {
   border: none;
+  margin: 0;
+  padding: 10px;
   outline: none;
   font-size: 16px;
+  align-self: center;
   color: #1a1a1a;
   background: transparent;
   width: 100%;
@@ -164,4 +178,38 @@
 
 .room-action-btn:hover {
   background-color: rgba(220, 53, 69, 0.1);
+}
+
+.darkmode {
+  position: relative;
+  font-size: 1.75rem;
+  padding: 1rem;
+  margin: 1px;
+  border-radius: 100%;
+  border: 1px solid transparent;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.darkmode:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #4f46e5;
+}
+
+.darkmode.active {
+  color: #4f46e5;
+  background-color: rgba(79, 70, 229, 0.1);
+}
+
+.dark-theme .darkmode {
+  color: #e5e7eb;
+}
+
+.dark-theme .darkmode:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #4f46e5;
 }

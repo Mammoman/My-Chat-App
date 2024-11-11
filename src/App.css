@@ -45,9 +45,14 @@ body{
   font-size: 44px;
 }
 
+.dark-theme{
+  transition: ease-out 1s;
+}
+
+
 body.dark-theme {
-  background-color: #ffffff;
-  color: #ffffff;
+  background-color: #000000;
+  color: #fff;
 }
 
 .dark-theme .settings-content {
@@ -102,77 +107,11 @@ body.dark-theme {
 
 
 
-.delete-room-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.delete-room-content {
-  background-color: white;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  width: 400px;
-  text-align: center;
-}
-
-.delete-room-title {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 16px;
-}
-
-.delete-room-text {
-  color: #666;
-  margin-bottom: 24px;
-}
-
-.delete-room-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-}
-
-.delete-room-button {
-  padding: 8px 24px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-
-.delete-room-button.confirm {
-  background-color: #dc3545;
-  color: white;
-}
-
-.delete-room-button.confirm:hover {
-  background-color: #c82333;
-}
-
-.delete-room-button.cancel {
-  background-color: #6c757d;
-  color: white;
-}
-
-.delete-room-button.cancel:hover {
-  background-color: #5a6268;
-}
 
 /* Main Container Dark Theme */
 .dark-theme .mainpage-container {
   background-color: #1a1a1a;
 }
-
 
 /* Chat List Container Dark Theme */
 .dark-theme .chat-list-container {
@@ -183,12 +122,19 @@ body.dark-theme {
 .dark-theme .chat-list-header {
   background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+ 
 }
 
 .dark-theme .gradient-text {
   background: linear-gradient(135deg, #ffffff 0%, #4f46e5 100%);
   -webkit-background-clip: text;
 }
+
+.darkmode .room-label{
+  color: aliceblue;
+}
+
+
 
 
 
@@ -209,6 +155,15 @@ body.dark-theme {
 
 
 /* Room Items Dark Theme */
+.dark-theme .room-input-wrapper{
+   padding: 0;
+}
+
+.dark-theme .room{
+  background: #221f1f;
+  padding: 4px;
+}
+
 .dark-theme .room-item {
   border: 1px solid #444;
 }
@@ -229,10 +184,26 @@ body.dark-theme {
   color: #999;
 }
 
+.dark-theme .room-label{
+  transition: all;
+  background: linear-gradient(135deg, #d89393 0%, #deff3b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
 /* Message Area Dark Theme */
 .dark-theme .message-area {
   background-color: #2c2c2c;
   border-color: #444;
+  border-radius: 15px;
 }
 
 .dark-theme .message-header {
@@ -255,11 +226,6 @@ body.dark-theme {
 
 
 /* Input Areas Dark Theme */
-.dark-theme input,
-.dark-theme textarea {
-  background-color: #333;
-  color: #ffffff;
-  border: 1px solid #444;
-}
+ 
 
 

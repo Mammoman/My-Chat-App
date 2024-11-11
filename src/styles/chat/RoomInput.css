@@ -6,10 +6,20 @@
 
 
 
-.room label{
+.room-label{
    font-size: 24px;
    font-weight: 600;
-}
+   background: linear-gradient(135deg, #1da95f 0%, #deff3b 100%);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   animation: gradient 8s ease infinite;
+ }
+ 
+ @keyframes gradient {
+   0% { background-position: 0% 50%; }
+   50% { background-position: 100% 50%; }
+   100% { background-position: 0% 50%; }
+ }
 
 .room-input{
   display: flex;
