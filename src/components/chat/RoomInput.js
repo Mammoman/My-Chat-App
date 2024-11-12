@@ -106,14 +106,22 @@ function RoomInput({ setRoom }) {
 
   return (
     <div className='room'>
-      <label>Enter Room name: </label>
+      <label className='room-label'>Enter Room name: </label>
+      <div className='room-input'>
       <input ref={roomInputRef} />
-      <select value={roomType} onChange={(e) => setRoomType(e.target.value)}>
-        <option value="public">Public Room</option>
-        <option value="private">Private Room</option>
+      <select className='room-type' value={roomType} onChange={(e) => setRoomType(e.target.value)}>
+        <option className='room-type-option' value="public">Public Room</option>
+        <option className='room-type-option' value="private">Private Room</option>
       </select>
-      <button onClick={createRoom}>Create Room</button>
+      </div>
+       
+      <div className='room-btn'>
       {error && <p className="error-message">{error}</p>}
+      <button className='custom-btn btn-12' onClick={createRoom}>
+        <span>Created!</span><span>Create Room</span></button>
+      
+      </div>
+     
 
       {showPopup && (
         <div className="popup">
