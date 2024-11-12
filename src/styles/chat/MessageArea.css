@@ -454,4 +454,49 @@
     position: relative;
   }
 
+  @media screen and (max-width: 768px) {
+    .message-area {
+      width: 100%;
+      margin: 0;
+      border-radius: 0;
+      border: none;
+      height: calc(100vh - 60px);
+    }
+
+    .message-header {
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 2;
+    }
+
+    .message-content {
+      height: calc(100vh - 180px);
+      padding: 10px;
+    }
+
+    .message-input-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      background: #fff;
+      border-top: 1px solid #edf2f9;
+    }
+
+    .message {
+      max-width: 90%;
+    }
+
+    .message-bubble {
+      padding: 10px 15px;
+    }
+
+    .header-actions {
+      gap: 10px;
+    }
+  }
+
  

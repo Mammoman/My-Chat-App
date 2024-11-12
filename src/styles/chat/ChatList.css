@@ -213,3 +213,36 @@
   background-color: rgba(255, 255, 255, 0.1);
   color: #4f46e5;
 }
+
+@media screen and (max-width: 768px) {
+  .chat-list-container {
+    width: 100%;
+    max-width: none;
+    min-width: auto;
+    border-radius: 0;
+    margin: 0;
+    padding: 10px;
+  }
+
+  .chat-list-header {
+    padding: 10px 15px;
+  }
+
+  .gradient-text {
+    font-size: 28px;
+  }
+
+  .search {
+    margin: 10px;
+  }
+
+  .rooms-container {
+    padding: 10px;
+    height: calc(100vh - 200px);
+  }
+
+  .room-item {
+    padding: 12px;
+    margin: 5px 0;
+  }
+}
