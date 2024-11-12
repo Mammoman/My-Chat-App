@@ -132,7 +132,6 @@ export const Auth = (props) => {
                         </div>
                         <span>or use your account</span>
                         <input
-                            className="form-container-input"
                             type="email"
                             placeholder="Email"
                             value={email}

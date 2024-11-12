@@ -13,7 +13,7 @@ import {
 } from 'firebase/firestore';
 import { auth, db } from '../../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { Call02Icon, PlusSignIcon, Cancel02Icon, MoreVerticalIcon, TelegramIcon } from 'hugeicons-react';
+import { AiPhone02Icon, EthereumEllipseIcon, PlusSignIcon, MailSend02Icon, Cancel02Icon } from 'hugeicons-react';
 import ChatRequestPopup from './ChatRequestPopup';
 import '../../styles/chat/MessageArea.css';
 
@@ -176,18 +176,15 @@ const Chat = (props) => {
               {userEmail ? (
                 <>
                   <h2>User Email: {userEmail}</h2>
-                 
+                  <span className="member-count">{room.members?.length || 0} members</span>
                 </>
               ) : (
                 <p>User not authenticated</p>
               )}
             </div>
             <div className="header-actions">
-            <span className="member-count">{room.members?.length || 0} members</span>
-              <button className="action-btn"><Call02Icon className='phone-ma-btn'/></button>
-              <button className="action-btn"><MoreVerticalIcon className='ellipsisV-ma-btn'/></button>
-
-
+              <button className="action-btn"><AiPhone02Icon className='phone-ma-btn'/></button>
+              <button className="action-btn"><EthereumEllipseIcon className='ellipsisV-ma-btn'/></button>
             </div>
           </div>
           
@@ -195,7 +192,7 @@ const Chat = (props) => {
             {messages.map((message) => (
               <div 
                 key={message.id} 
-                className={`message ${message.user === userEmail ? 'sent' : 'received'}`}
+                className={`message-container ${message.user === userEmail ? 'sent' : 'received'}`}
                 onClick={() => handleMessageClick(message.id)}
               >
                 <div className="message-user-avatar">
@@ -203,7 +200,6 @@ const Chat = (props) => {
                 </div>
                 <div className="message-content-wrapper">
                   <span className="message-user-email">{message.user}</span>
-                  <div className="message-bubble-wrapper">
                   <div className="message-bubble">
                     {message.replyTo && (
                       <div className="reply-content">
@@ -213,8 +209,6 @@ const Chat = (props) => {
                     )}
                     <p>{message.text}</p>
                   </div>
-                  </div>
-                
                   <span className="message-status">
                     {message.createdAt ? (
                       <span className="status-icon status-received">✓✓</span>
@@ -271,7 +265,7 @@ const Chat = (props) => {
                 value={newMessage}
               />
               <button type='submit' className='action-btn plus-btn'>
-                <TelegramIcon/>
+                <MailSend02Icon/>
               </button>
               </div>
           </form>

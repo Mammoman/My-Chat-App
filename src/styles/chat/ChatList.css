@@ -1,5 +1,4 @@
 .chat-list-container {
-  position: relative;
   width: 28%;
   min-width: 250px;
   max-width: 400px;
@@ -21,8 +20,7 @@
 }
 
 .chat-list-header {
-  padding: 10px;
-  padding-bottom: 0;
+  padding: 25px;
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -41,16 +39,6 @@
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
-}
-
-.header-buttom{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.darkmode-icon toggle-icon-1{
-    background-color: yellow;
 }
 
 .search {
@@ -78,16 +66,12 @@
 .search-icon {
   color: #6b7280;
   margin-right: 10px;
-  align-self: center;
 }
 
-.chat-search-container .search-input {
+.chat-search-container input {
   border: none;
-  margin: 0;
-  padding: 10px;
   outline: none;
   font-size: 16px;
-  align-self: center;
   color: #1a1a1a;
   background: transparent;
   width: 100%;
@@ -101,10 +85,9 @@
 
 .room-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 12px;
-  margin: 4px 0;
+  padding: 15px;
+  margin: 5px 0;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -150,66 +133,6 @@
 }
 
 .room-input-wrapper {
-  padding: 4px;
+  padding: 20px;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.room-content {
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
-
-.room-action-btn {
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: none;
-  background-color: transparent;
-  color: #dc3545;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  opacity: 0;
-}
-
-.room-item:hover .room-action-btn {
-  opacity: 1;
-}
-
-.room-action-btn:hover {
-  background-color: rgba(220, 53, 69, 0.1);
-}
-
-.darkmode {
-  position: relative;
-  font-size: 1.75rem;
-  padding: 1rem;
-  margin: 1px;
-  border-radius: 100%;
-  border: 1px solid transparent;
-  color: #6b7280;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.darkmode:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  color: #4f46e5;
-}
-
-.darkmode.active {
-  color: #4f46e5;
-  background-color: rgba(79, 70, 229, 0.1);
-}
-
-.dark-theme .darkmode {
-  color: #e5e7eb;
-}
-
-.dark-theme .darkmode:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #4f46e5;
 }

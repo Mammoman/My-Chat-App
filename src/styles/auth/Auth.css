@@ -63,13 +63,6 @@ form.form-container{
     padding: 20px;
 }
 
-.form-container-input{
-    border: none;
-    height: 50%;
-    font-size: 20px;
-    margin: 14px;
-    padding: 20px;
-}
 
 .form-container input:hover{
    outline-style: inherit;
