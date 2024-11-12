@@ -122,7 +122,18 @@ body.dark-theme {
 .dark-theme .chat-list-header {
   background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
- 
+}
+
+.darkmode--icon{
+  position: relative;
+  z-index: 100px;
+}
+
+.dark-theme .toggle-icon-1{
+  color: yellow;
+  border-radius: 14px;
+  width: 40px;
+  height: 44px;
 }
 
 .dark-theme .gradient-text {
@@ -133,6 +144,7 @@ body.dark-theme {
 .darkmode .room-label{
   color: aliceblue;
 }
+
 
 
 
